@@ -10,7 +10,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
-  project: default # you can change the project name
+  project: default
   source:
     path: apps
     repoURL: https://gitlab.com/lazno/argocd-apps.git
