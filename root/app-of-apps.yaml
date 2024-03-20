@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  project: default # you can change the project name
+  source:
+    path: apps
+    repoURL: https://gitlab.com/lazno/argocd-apps.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
