@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backstage
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/lazno/backstage_ops'
+    path: kubernetes
+    targetRevision: main
+    directory:
+      jsonnet:
+        tlas:
+          - name: ''
+            value: ''
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: backstage
